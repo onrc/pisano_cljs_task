@@ -1,4 +1,7 @@
 (ns app.db)
 
 (def default-db
-  {:name "re-frame"})
+  {:lists {}
+   :active-list nil
+   :filter :all
+   :todos {}})

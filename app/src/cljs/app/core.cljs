@@ -3,6 +3,7 @@
    [reagent.core :as reagent]
    [reagent.dom :as rdom]
    [re-frame.core :as re-frame]
+   [day8.re-frame.http-fx]
    [app.events :as events]
    [app.views :as views]
    [app.config :as config]
@@ -21,5 +22,6 @@
 
 (defn init []
   (re-frame/dispatch-sync [::events/initialize-db])
+  (re-frame/dispatch [:get-lists])
   (dev-setup)
   (mount-root))
