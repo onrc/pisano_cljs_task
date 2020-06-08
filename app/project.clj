@@ -8,6 +8,7 @@
                  [reagent "0.10.0"]
                  [re-frame "0.12.0"]
                  [day8.re-frame/tracing "0.5.5"]
+                 [day8.re-frame/http-fx "v0.2.0"]
                  [garden "1.3.10"]
                  [ns-tracker "0.4.0"]]
 
