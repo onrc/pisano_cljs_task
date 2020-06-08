@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_PASSWORD=pisano
+  api:
+    build: api
+    ports:
+      - 3000:3000
+    environment:
+      - DB_HOST=db
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=pisano
+    depends_on:
+      - db
+  app:
+    build: app
+    ports:
+      - 3001:80
