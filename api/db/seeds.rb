@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+5.times do
+  @list = List.create(title: Faker::Books::Lovecraft.location)
+
+  10.times do
+    Todo.create(title: Faker::Books::Lovecraft.sentence, done: false, list: List.last)
+  end
+end
