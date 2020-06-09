@@ -1,6 +1,11 @@
-@background-color: #fafbfc; // #f7f8f9
+@background-color: #fafbfc;
 @border: #ecedf2;
 @text-color: #343434;
+@success-color: #36d7a5;
+@danger-color: #ed5454;
+@warning-color: #ffb26e;
+@input-text-color: #525d6a;
+@input-border-color: #e6e7ec;
 
 * {
   box-sizing: border-box;
@@ -24,7 +29,7 @@ body {
 button:disabled,
 input:disabled {
   cursor: default;
-  color: #e6e7ec;
+  color: @input-border-color;
 }
 
 .panel {
@@ -74,7 +79,7 @@ input:disabled {
         padding: 0;
         border: 0;
         background: none;
-        color: #ed5454;
+        color: @danger-color;
         cursor: pointer;
         display:none;
       }
@@ -92,11 +97,11 @@ input:disabled {
 
     .todo-input {
       background: none;
-      border-bottom: 2px solid #e6e7ec;
+      border-bottom: 2px solid @input-border-color;
     }
 
     .todo-input:focus {
-      border-color: #36d7a5;
+      border-color: @success-color;
     }
   }
 }
@@ -141,13 +146,13 @@ input:disabled {
     flex: 1;
     background: none;
     border: 0;
-    color: #525d6a;
+    color: @input-text-color;
     padding: 20px 10px;
     border-bottom: 2px solid transparent;
     cursor: pointer;
 
     &.active {
-      border-color: #36d7a5;
+      border-color: @success-color;
     }
   }
 }
@@ -155,7 +160,7 @@ input:disabled {
 .todo-input {
   border: 0;
   display: block;
-  color: #525d6a;
+  color: @input-text-color;
   width: 100%;
   line-height: 40px;
   margin: 0;
@@ -165,7 +170,7 @@ input:disabled {
 .todo-item {
   position: relative;
   border-bottom: 1px solid #e6e6e6;
-  color: #525d6a;
+  color: @input-text-color;
   display: flex;
   align-items: center;
 
@@ -203,7 +208,7 @@ input:disabled {
 
     &:checked::after {
       content: '\f058';
-      color: #36d7a5;
+      color: @success-color;
     }
   }
 
@@ -219,22 +224,22 @@ input:disabled {
   &:hover {
     .btn {
       display: block;
-      color: #e6e7ec;
+      color: @input-border-color;
     }
 
     .btn.edit:hover {
-      color: #ffb26e;
+      color: @warning-color;
     }
 
     .btn.delete:hover {
-      color: #ed5454;
+      color: @danger-color;
     }
   }
 }
 
 .input-form {
   display: flex;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid @input-border-color;
 }
 
 .btn {
@@ -245,5 +250,5 @@ input:disabled {
   line-height: 1;
   width: 48px;
   cursor: pointer;
-  color: #36d7a5;
+  color: @success-color;
 }
