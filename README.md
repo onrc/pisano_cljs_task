@@ -11,7 +11,7 @@ docker-compose up -d --build
 To setup database;
 
 ```
-docker-compose exec api rails:db:setup
+docker-compose exec api rails db:setup
 ```
 
 Then visit `http://localhost:3001`.
