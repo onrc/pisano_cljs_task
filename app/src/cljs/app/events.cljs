@@ -80,17 +80,24 @@
     ))
 
 
+(re-frame/reg-event-db
+  :set-active-list-id
+  (fn
+    [db [_ id]]
+    (assoc db :active-list-id id)))
+
+
 (re-frame/reg-event-fx
   :get-todos
   (fn
-    [{db :db} [_ id]]
+    [cofx [_ id]]
     {:http-xhrio {:method          :get
                   :uri             (str "http://localhost:3000/lists/" id "/todos")
                   :format          (ajax/json-request-format)
                   :response-format (ajax/json-response-format {:keywords? true})  ;; IMPORTANT!: You must provide this.
                   :on-success      [:get-todos-success]
                   :on-error        [:handle-error]}
-     :db (assoc db :active-list id)}))
+     :dispatch [:set-active-list-id id]}))
 
 
 (re-frame/reg-event-db
@@ -106,7 +113,7 @@
   (fn
     [{db :db} [_ params]]
     {:http-xhrio {:method          :post
-                  :uri             (str "http://localhost:3000/lists/" (:active-list db) "/todos")
+                  :uri             (str "http://localhost:3000/lists/" (:active-list-id db) "/todos")
                   :params          params
                   :format          (ajax/json-request-format)
                   :response-format (ajax/json-response-format {:keywords? true})  ;; IMPORTANT!: You must provide this.
@@ -127,7 +134,7 @@
   (fn
     [{db :db} [_ id]]
     {:http-xhrio {:method          :delete
-                  :uri             (str "http://localhost:3000/lists/" (:active-list db) "/todos/" id)
+                  :uri             (str "http://localhost:3000/lists/" (:active-list-id db) "/todos/" id)
                   :format          (ajax/json-request-format)
                   :response-format (ajax/json-response-format {:keywords? true})  ;; IMPORTANT!: You must provide this.
                   :on-success      [:delete-success :todos id]
@@ -139,7 +146,7 @@
   (fn
     [{db :db} [_ id params]]
     {:http-xhrio {:method          :put
-                  :uri             (str "http://localhost:3000/lists/" (:active-list db) "/todos/" id)
+                  :uri             (str "http://localhost:3000/lists/" (:active-list-id db) "/todos/" id)
                   :params params
                   :format          (ajax/json-request-format)
                   :response-format (ajax/json-response-format {:keywords? true})  ;; IMPORTANT!: You must provide this.
@@ -159,4 +166,10 @@
   :set-filter
   (fn
     [db [_ filter-keyword]]
-    (assoc db :filter filter-keyword)))
+    (assoc db :filter filter-keyword)
+    ))
+
+(re-frame/reg-event-db
+  :handle-error
+  (fn [db [_ error]]
+    (print error)))

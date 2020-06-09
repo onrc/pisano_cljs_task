@@ -32,4 +32,4 @@
 (re-frame/reg-sub
   :active-list
   (fn [db]
-    (get-in db [:lists (:active-list db)])))
+    (get-in db [:lists (:active-list-id db)])))

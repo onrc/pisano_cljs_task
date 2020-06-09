@@ -2,6 +2,6 @@
 
 (def default-db
   {:lists {}
-   :active-list nil
+   :active-list-id nil
    :filter :all
    :todos {}})
