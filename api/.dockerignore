@@ -1,0 +1,8 @@
+.bundle
+.git
+vendor/bundle
+log/*
+!/log/.keep
+tmp/*
+!/tmp/.keep
+coverage
